@@ -1,0 +1,12 @@
+{
+  "name": "visual-rss-generator",
+  "version": "1.0.0",
+  "description": "Automated visual RSS feed generator for sites without RSS",
+  "type": "module",
+  "scripts": {
+    "build-feed": "node scrape.js"
+  },
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}
