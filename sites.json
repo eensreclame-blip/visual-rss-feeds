@@ -1,7 +1,7 @@
 [
   {
     "name": "HeroInspo",
-    "url": "https://heroinspo.com/",
+    "url": "https://heroinspo.com/#galleri",
     "itemSelector": "a[href*='/gallery/'], a[href*='/insp/']",
     "titleSelector": "img",
     "linkSelector": "",
@@ -12,6 +12,222 @@
     "url": "https://21st.dev/community/components/newest",
     "itemSelector": "a[href*='/@'][href*='/components/'], a[href*='/components/']:not([href*='/community/'])",
     "titleSelector": "h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Brik Space",
+    "url": "https://brik.space/gallery",
+    "itemSelector": "a[href*='/toolviewer?slug=']",
+    "titleSelector": "h2, h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Land-book",
+    "url": "https://land-book.com/",
+    "itemSelector": "a.website-preview-thumbnail-container, a[href*='/websites/'], a[href*='/design/']",
+    "titleSelector": "img, h2, h3",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "MaxiBestOf",
+    "url": "https://maxibestof.one/websites",
+    "itemSelector": "a[href*='/websites/']:has(img), a[href*='/website/']:has(img), div[class*='grid'] a:has(img)",
+    "titleSelector": "h2, h3, img",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Framer Gallery",
+    "url": "https://www.framer.com/community/gallery/",
+    "itemSelector": "a[href*='/gallery/'], a[href*='/templates/']",
+    "titleSelector": "h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Landing Love",
+    "url": "https://www.landing.love/",
+    "itemSelector": "a[href*='/website/']:has(img), a[href*='/websites/']:has(img), a[href*='/sites/']:has(img)",
+    "titleSelector": "h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Httpster",
+    "url": "https://httpster.net/",
+    "itemSelector": "article, div.site, div.item",
+    "titleSelector": "h2, h3, a",
+    "linkSelector": "a",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Lummi",
+    "url": "https://www.lummi.ai/",
+    "itemSelector": "a[href*='/photo/']",
+    "titleSelector": "img",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Aceternity UI",
+    "url": "https://ui.aceternity.com/components",
+    "itemSelector": "a[href*='/components/']",
+    "titleSelector": "h2, h3, p",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Skiper UI",
+    "url": "https://skiper-ui.com/components",
+    "itemSelector": "a[href*='/components/'], div[class*='grid'] a",
+    "titleSelector": "h2, h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "React Bits",
+    "url": "https://reactbits.dev/get-started/index",
+    "itemSelector": "a[href*='/components/'], a[href*='/animations/'], a[href*='/backgrounds/']",
+    "titleSelector": "h3, p, span",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Toolfolio",
+    "url": "https://toolfolio.com/",
+    "itemSelector": "a[href*='/tool/'], a[href*='/tools/']",
+    "titleSelector": "h2, h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "The Toolbox",
+    "url": "https://thetoolbox.art/",
+    "itemSelector": "a[href*='/tool/'], a[href*='/tools/'], a:has(img)",
+    "titleSelector": "h2, h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "CTA Gallery",
+    "url": "https://www.cta.gallery/",
+    "itemSelector": "a[href*='/cta/']",
+    "titleSelector": "h2, h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Made in Webflow",
+    "url": "https://webflow.com/made-in-webflow/case-study/recent",
+    "itemSelector": "a[href*='/made-in-webflow/website/']",
+    "titleSelector": "h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "One Page Love",
+    "url": "https://onepagelove.com/",
+    "itemSelector": "a.link-image-long, a.link-image-short",
+    "titleSelector": "img",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Motion in Design",
+    "url": "https://www.motionin.design/",
+    "itemSelector": "div[class*='grid'] a",
+    "titleSelector": "h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "GSAP Showcase",
+    "url": "https://gsap.com/showcase/",
+    "itemSelector": "a.filtered-gallery__media",
+    "titleSelector": "img",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Pinterest Visual Cores",
+    "url": "https://nl.pinterest.com/electroformaint/ef-visual-cores/",
+    "itemSelector": "div[data-test-id='pin'], a[href*='/pin/']",
+    "titleSelector": "img, h2, h3",
+    "linkSelector": "a",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Site of Sites",
+    "url": "https://www.siteofsites.co/?p=1",
+    "itemSelector": "a[href*='/websites/']",
+    "titleSelector": "img",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Swishy AI",
+    "url": "https://www.swishy.ai/",
+    "itemSelector": "a[href*='/ai-'], div[class*='grid'] a",
+    "titleSelector": "h2, h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Webflow Templates",
+    "url": "https://webflow.com/templates",
+    "itemSelector": "a[href*='/templates/']:has(img), a[href*='/templates/html/']",
+    "titleSelector": "h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Lovable Templates",
+    "url": "https://lovable.dev/templates",
+    "itemSelector": "a[href*='/templates/']",
+    "titleSelector": "h2, h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Aura Build",
+    "url": "https://www.aura.build/",
+    "itemSelector": "a[href*='/site/'], a[href*='/design/'], div[class*='grid'] a",
+    "titleSelector": "h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "MotionSites",
+    "url": "https://motionsites.ai/",
+    "itemSelector": "div[class*='grid'] a, a:has(img)",
+    "titleSelector": "h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Cosmos",
+    "url": "https://www.cosmos.so/",
+    "itemSelector": "a[href*='/pin/'], a[href*='/e/'], a[href*='/post/'], a[href*='/explore']",
+    "titleSelector": "img, h2, h3, p",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Readymag Examples",
+    "url": "https://readymag.com/examples",
+    "itemSelector": "a[href*='/examples/'], a[href*='/showcase/'], div[class*='card'] a",
+    "titleSelector": "h2, h3, p, img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Variant Community",
+    "url": "https://variant.com/community",
+    "itemSelector": "a[href*='/community/'], a[href*='/post/'], a[href*='/item/']",
+    "titleSelector": "h2, h3, p, img",
     "linkSelector": "",
     "imageSelector": "img, video"
   }

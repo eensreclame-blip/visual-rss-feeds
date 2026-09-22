@@ -51,10 +51,10 @@ async function scrapeSite(browser, siteConfig) {
 
   try {
     try {
-      await page.goto(siteConfig.url, { waitUntil: 'networkidle', timeout: 30000 });
-    } catch {
-      console.log(`[Warning] networkidle timed out for ${siteConfig.url}, proceeding with DOMContentLoaded.`);
-      await page.waitForLoadState('domcontentloaded');
+      await page.goto(siteConfig.url, { waitUntil: 'domcontentloaded', timeout: 20000 });
+      await page.waitForLoadState('networkidle', { timeout: 4000 }).catch(() => {});
+    } catch (e) {
+      console.log(`[Warning] Load issue for ${siteConfig.url}: ${e.message}`);
     }
 
     // Force lazy loading by scrolling
@@ -66,11 +66,11 @@ async function scrapeSite(browser, siteConfig) {
           const scrollHeight = document.body.scrollHeight;
           window.scrollBy(0, distance);
           totalHeight += distance;
-          if (totalHeight >= 2000 || totalHeight >= scrollHeight) {
+          if (totalHeight >= 2400 || totalHeight >= scrollHeight) {
             clearInterval(timer);
             resolve();
           }
-        }, 100);
+        }, 80);
       });
     });
     await page.waitForTimeout(1000);
@@ -86,7 +86,14 @@ async function scrapeSite(browser, siteConfig) {
 
         function extractMediaUrl(container, selector) {
           const mediaEl = selector ? container.querySelector(selector) : container.querySelector('img, video');
-          if (!mediaEl) return null;
+          if (!mediaEl) {
+            // Check if container itself has style with background-image
+            const bgImg = window.getComputedStyle(container).backgroundImage;
+            if (bgImg && bgImg.startsWith('url(')) {
+              return bgImg.slice(4, -1).replace(/["']/g, '');
+            }
+            return null;
+          }
 
           const tagName = mediaEl.tagName.toLowerCase();
 
@@ -95,6 +102,7 @@ async function scrapeSite(browser, siteConfig) {
             mediaEl.getAttribute('src') ||
             mediaEl.getAttribute('data-src') ||
             mediaEl.getAttribute('data-lazy-src') ||
+            mediaEl.getAttribute('data-lazy') ||
             mediaEl.currentSrc;
 
           // 2. Video poster or source
@@ -111,7 +119,7 @@ async function scrapeSite(browser, siteConfig) {
           }
 
           // 3. Srcset fallback
-          if (!src || src.startsWith('data:image/svg')) {
+          if (!src || src.startsWith('data:image/svg') || src === 'data:,') {
             const srcset = mediaEl.getAttribute('srcset') || mediaEl.getAttribute('data-srcset');
             if (srcset) {
               const candidate = srcset.split(',')[0].trim().split(/\s+/)[0];
@@ -169,7 +177,6 @@ async function scrapeSite(browser, siteConfig) {
             title,
             link: href,
             mediaUrl,
-            rawHtml: el.outerHTML.slice(0, 300),
           };
         });
       },
@@ -190,11 +197,13 @@ async function scrapeSite(browser, siteConfig) {
 
       let finalTitle = raw.title;
       if (!finalTitle && fullLink) {
-        const segments = new URL(fullLink).pathname.split('/').filter(Boolean);
-        const lastSlug = segments[segments.length - 1];
-        if (lastSlug) {
-          finalTitle = slugToTitle(lastSlug);
-        }
+        try {
+          const segments = new URL(fullLink).pathname.split('/').filter(Boolean);
+          const lastSlug = segments[segments.length - 1];
+          if (lastSlug) {
+            finalTitle = slugToTitle(lastSlug);
+          }
+        } catch {}
       }
       if (!finalTitle) {
         finalTitle = `${siteConfig.name} Item #${i + 1}`;
@@ -228,7 +237,7 @@ function generateRssXml(items) {
     .map((item) => {
       const isVideo = item.mediaUrl && (item.mediaUrl.endsWith('.mp4') || item.mediaUrl.endsWith('.webm'));
       let mediaMarkup = '';
-      if (item.mediaUrl) {
+      if (item.mediaUrl && !item.mediaUrl.startsWith('data:image/svg')) {
         if (isVideo) {
           mediaMarkup = `<p><video src="${escapeXml(item.mediaUrl)}" controls style="max-width:100%;height:auto;"></video></p>`;
         } else {
@@ -252,7 +261,7 @@ function generateRssXml(items) {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Visual Feeds Hub</title>
-    <link>https://github.com</link>
+    <link>https://github.com/eensreclame-blip/visual-rss-feeds</link>
     <description>Automatisch gegenereerde RSS-feed voor visuele inspiratiesites</description>
     <language>nl</language>
     <lastBuildDate>${buildDate}</lastBuildDate>
