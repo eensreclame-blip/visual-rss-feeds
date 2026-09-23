@@ -230,5 +230,45 @@
     "titleSelector": "h2, h3, p, img",
     "linkSelector": "",
     "imageSelector": "img, video"
+  },
+  {
+    "name": "BestWebsiteTemplate",
+    "url": "https://bestwebsitetemplate.com/templates",
+    "itemSelector": "a[href*='/templates/framer/'], a[href*='/templates/webflow/']",
+    "titleSelector": "img",
+    "linkSelector": "",
+    "imageSelector": "img, video"
+  },
+  {
+    "name": "Recent Design",
+    "url": "https://recent.design/",
+    "itemSelector": "article:has(a[href*='/i/'])",
+    "titleSelector": "a",
+    "linkSelector": "a[href*='/i/']",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Posts Design",
+    "url": "https://posts.design/",
+    "itemSelector": "main div[class*='grid'] > div:has(a)",
+    "titleSelector": "a",
+    "linkSelector": "a",
+    "imageSelector": "img"
+  },
+  {
+    "name": "Pretty Sites",
+    "url": "https://prettysites.io/",
+    "itemSelector": "article.card",
+    "titleSelector": "h2, h3, button.visual",
+    "linkSelector": "",
+    "imageSelector": "img.video-poster, img, video"
+  },
+  {
+    "name": "Collect UI",
+    "url": "https://collectui.com/",
+    "itemSelector": "a[href*='/designs/']",
+    "titleSelector": "h2, h3, p, span",
+    "linkSelector": "",
+    "imageSelector": "img"
   }
 ]

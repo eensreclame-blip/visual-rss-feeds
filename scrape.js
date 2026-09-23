@@ -87,7 +87,6 @@ async function scrapeSite(browser, siteConfig) {
         function extractMediaUrl(container, selector) {
           const mediaEl = selector ? container.querySelector(selector) : container.querySelector('img, video');
           if (!mediaEl) {
-            // Check if container itself has style with background-image
             const bgImg = window.getComputedStyle(container).backgroundImage;
             if (bgImg && bgImg.startsWith('url(')) {
               return bgImg.slice(4, -1).replace(/["']/g, '');
@@ -141,6 +140,15 @@ async function scrapeSite(browser, siteConfig) {
           } else {
             const anchor = el.querySelector('a');
             if (anchor) href = anchor.getAttribute('href') || '';
+            if (!href) {
+              const btn = el.querySelector('button');
+              const aria = btn?.getAttribute('aria-label') || el.getAttribute('aria-label') || '';
+              if (aria) {
+                href = `${pageUrl}#${aria.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+              } else {
+                href = `${pageUrl}#item-${index + 1}`;
+              }
+            }
           }
 
           // Image / Video extraction
@@ -154,13 +162,12 @@ async function scrapeSite(browser, siteConfig) {
               if (titleEl.tagName.toLowerCase() === 'img') {
                 title = titleEl.getAttribute('alt') || titleEl.getAttribute('title') || '';
               } else {
-                title = cleanText(titleEl.innerText || titleEl.textContent || '');
+                title = cleanText(titleEl.getAttribute('aria-label') || titleEl.innerText || titleEl.textContent || '');
               }
             }
           }
 
           if (!title) {
-            // Fallback 1: Any img alt in container
             const img = el.querySelector('img');
             if (img && img.getAttribute('alt')) {
               title = cleanText(img.getAttribute('alt'));
@@ -168,7 +175,13 @@ async function scrapeSite(browser, siteConfig) {
           }
 
           if (!title) {
-            // Fallback 2: Any text in element
+            const btn = el.querySelector('button');
+            if (btn && btn.getAttribute('aria-label')) {
+              title = cleanText(btn.getAttribute('aria-label'));
+            }
+          }
+
+          if (!title) {
             title = cleanText(el.innerText || el.textContent || '');
           }
 
